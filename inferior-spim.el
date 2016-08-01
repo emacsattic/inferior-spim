@@ -1,4 +1,4 @@
-;;; inferior-spim.el -- inferior mode for spim.
+;;; inferior-spim.el --- inferior mode for spim.
 
 ;; Copyright (C) 2016 hiddenlotus
 ;; Author: hiddenlotus <kaihaosw@gmail.com>
