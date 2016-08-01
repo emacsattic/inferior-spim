@@ -2,10 +2,20 @@
 #+startup: content
 
 ** Introduction
-   Pcomplete for homebrew.
+   An emacs inferior mode for [[http://spimsimulator.sourceforge.net/][spim]].
 
-** Screenshots
-   [[./screenshots/1.png]]
-   [[./screenshots/2.png]]
-   [[./screenshots/3.png]]
-   [[./screenshots/4.png]]
+** Installation
+   It's recommended to install this with [[http://melpa.org/][MELPA]] package system.
+
+** Usage
+   If you use `asm-mode', you can config like this:
+   #+begin_src elisp
+     (require 'asm-mode)
+
+     (define-key asm-mode-map (kbd "C-`") 'run-spim)
+     (define-key asm-mode-map (kbd "C-c C-z") 'switch-to-spim)
+     (define-key asm-mode-map (kbd "C-c C-b") 'spim-send-buffer)
+     (define-key asm-mode-map (kbd "C-c C-l") 'spim-load-file)
+     (define-key asm-mode-map (kbd "C-c i") 'spim-send-reinitialize)
+     (define-key asm-mode-map (kbd "C-c r") 'spim-send-run)q
+   #+end_src
