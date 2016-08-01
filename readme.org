@@ -6,9 +6,10 @@
 
 ** Installation
    It's recommended to install this with [[http://melpa.org/][MELPA]] package system.
+   M-x: package-install inferior-spim
 
 ** Usage
-   If you use `asm-mode', you can config like this:
+   If you use `asm-mode', you can configure like this:
    #+begin_src elisp
      (require 'asm-mode)
 

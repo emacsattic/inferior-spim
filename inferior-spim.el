@@ -30,7 +30,7 @@
 
 ;; Inferior process for spim.
 
-;; If you use `asm-mode', you can config like this:
+;; If you use `asm-mode', you can configure like this:
 
 ;; (require 'asm-mode)
 ;; (define-key asm-mode-map (kbd "C-`") 'run-spim)
