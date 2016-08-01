@@ -17,5 +17,5 @@
      (define-key asm-mode-map (kbd "C-c C-b") 'spim-send-buffer)
      (define-key asm-mode-map (kbd "C-c C-l") 'spim-load-file)
      (define-key asm-mode-map (kbd "C-c i") 'spim-send-reinitialize)
-     (define-key asm-mode-map (kbd "C-c r") 'spim-send-run)q
+     (define-key asm-mode-map (kbd "C-c r") 'spim-send-run)
    #+end_src
