@@ -33,19 +33,19 @@
 ;; If you use `asm-mode', you can configure like this:
 
 ;; (require 'asm-mode)
-;; (define-key asm-mode-map (kbd "C-`") 'run-spim)
-;; (define-key asm-mode-map (kbd "C-c C-z") 'switch-to-spim)
-;; (define-key asm-mode-map (kbd "C-c C-b") 'spim-send-buffer)
-;; (define-key asm-mode-map (kbd "C-c C-l") 'spim-load-file)
-;; (define-key asm-mode-map (kbd "C-c i") 'spim-send-reinitialize)
-;; (define-key asm-mode-map (kbd "C-c r") 'spim-send-run)
+;; (define-key asm-mode-map (kbd "C-`") 'inferior-run-spim)
+;; (define-key asm-mode-map (kbd "C-c C-z") 'inferior-switch-to-spim)
+;; (define-key asm-mode-map (kbd "C-c C-b") 'inferior-spim-send-buffer)
+;; (define-key asm-mode-map (kbd "C-c C-l") 'inferier-spim-load-file)
+;; (define-key asm-mode-map (kbd "C-c i") 'inferior-spim-send-reinitialize)
+;; (define-key asm-mode-map (kbd "C-c r") 'inferior-spim-send-run)
 
 ;;; Code:
 (require 'comint)
 
 (defgroup inferior-spim nil
   "Run a spim process in a buffer."
-  :group 'inferior-spim)
+  :group 'asm)
 
 (defcustom inferior-spim-program-command (executable-find "spim")
   "Command for Spim."
@@ -62,7 +62,7 @@
 (defvar inferior-spim-buffer)
 
 ;;;###autoload
-(defun run-spim (&optional dont-switch-p)
+(defun inferior-run-spim (&optional dont-switch-p)
   "Run an Inferior Spim process."
   (interactive)
   (unless (comint-check-proc "*spim*")
@@ -75,51 +75,45 @@
     (pop-to-buffer inferior-spim-buffer)))
 
 ;;;###autoload
-(defun spim-send-reinitialize ()
+(defun inferior-spim-send-reinitialize ()
   (interactive)
-  (run-spim t)
+  (inferior-run-spim t)
   (comint-send-string inferior-spim-buffer "reinitialize\n"))
 
 ;;;###autoload
-(defun spim-send-run ()
+(defun inferior-spim-send-run ()
   (interactive)
-  (run-spim t)
+  (inferior-run-spim t)
   (comint-send-string inferior-spim-buffer "run\n"))
 
 ;;;###autoload
-(defun spim-send-buffer ()
+(defun inferior-spim-send-buffer ()
   (interactive)
-  (run-spim t)
+  (inferior-run-spim t)
   (comint-send-string
    inferior-spim-buffer
    (format "load \"%s\"\n" (buffer-file-name (current-buffer)))))
 
 ;;;###autoload
-(defun spim-load-file (filename)
+(defun inferier-spim-load-file (filename)
   "Load a file in the spim process."
   (interactive "f")
   (let ((filename (expand-file-name filename)))
-    (run-spim t)
+    (inferior-run-spim t)
     (comint-send-string
      inferior-spim-buffer
      (format "load \"%s\"\n" filename))))
 
 ;;;###autoload
-(defun switch-to-spim (eob-p)
+(defun inferior-switch-to-spim (eob-p)
   (interactive "P")
   (if (and inferior-spim-buffer (get-buffer inferior-spim-buffer))
       (pop-to-buffer inferior-spim-buffer)
     (error "No current process buffer. See variale `inferior-spim-buffer'")))
 
-(defvar inferior-spim-mode-map
-  (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "C-c C-l") 'spim-load-file)
-    m))
-
 (define-derived-mode inferior-spim-mode comint-mode "Inferior Spim"
   "Major mode for interacting with an inferior Spim process."
-  :group 'inferior-spim
-  (use-local-map inferior-spim-mode-map))
+  :group 'inferior-spim)
 
 (provide 'inferior-spim)
 ;;; inferior-spim.el ends here
