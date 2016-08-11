@@ -102,7 +102,7 @@
     (inferior-run-spim t)
     (comint-send-string
      inferior-spim-buffer
-     (format "load %s\n" (shell-quote-argument filename)))))
+     (format "load \"%s\"\n" filename))))
 
 ;;;###autoload
 (defun inferior-switch-to-spim (eob-p)
@@ -114,6 +114,10 @@
 (define-derived-mode inferior-spim-mode comint-mode "Inferior Spim"
   "Major mode for interacting with an inferior Spim process."
   :group 'inferior-spim)
+
+(define-key inferior-spim-mode-map (kbd "C-c C-l") 'inferier-spim-load-file)
+(define-key inferior-spim-mode-map (kbd "C-c i") 'inferior-spim-send-reinitialize)
+(define-key inferior-spim-mode-map (kbd "C-c r") 'inferior-spim-send-run)
 
 (provide 'inferior-spim)
 ;;; inferior-spim.el ends here
