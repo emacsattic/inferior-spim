@@ -102,7 +102,7 @@
     (inferior-run-spim t)
     (comint-send-string
      inferior-spim-buffer
-     (format "load \"%s\"\n" filename))))
+     (format "load %s\n" (shell-quote-argument filename)))))
 
 ;;;###autoload
 (defun inferior-switch-to-spim (eob-p)
