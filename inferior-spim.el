@@ -75,6 +75,9 @@
     (pop-to-buffer inferior-spim-buffer)))
 
 ;;;###autoload
+(defalias 'run-spim 'inferior-run-spim)
+
+;;;###autoload
 (defun inferior-spim-send-reinitialize ()
   (interactive)
   (inferior-run-spim t)
